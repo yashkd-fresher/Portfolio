@@ -1,5 +1,6 @@
 const express=require("express");
 const mongoose=require("mongoose");
+const bodyParser = require('body-parser')
 const port=3000;
 const app=express();
 
@@ -24,6 +25,8 @@ app.engine('handlebars', handlebars.engine)
 app.set('view engine', 'handlebars')
 
 app.use("/assets", express.static("assets"));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.get("/",(req,res)=>{
     res.render('index');
